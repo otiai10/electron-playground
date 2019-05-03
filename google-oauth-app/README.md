@@ -1,6 +1,8 @@
 # Electron Google OAuth Example App
 
+Allows users to login with Google and gets API access tokens for YouTube Data API.
 
+![Application Image](https://user-images.githubusercontent.com/931554/57120834-da8e3280-6dae-11e9-9ea4-2d7358f7b5cd.png)
 
 # Getting Started
 
