@@ -2,6 +2,16 @@
 <html>
   <head>
     <base url="./">
+    <template id="item">
+      <div class="item">
+        <div class="thumbnail-container">
+          <img class="thumbnail" src="" />
+        </div>
+        <div class="properties-container">
+          <span class="title"></span>
+        </div>
+      </div>
+    </template>
     <script src="./top.js"></script>
     <link rel="stylesheet" href="./top.css" />
   </head>
@@ -16,26 +26,8 @@
       <div class="form">
         <input type="text" />
       </div>
-      <div class="result">
+      <div id="result">
         <!-- Result would be here -->
-        <div class="item">
-          <div class="thumbnail-container">
-            <img class="thumbnail" src="https://i.ytimg.com/vi/fBLkfdQsXLw/default.jpg" />
-          </div>
-          <div class="properties-container">
-            <span>カタストロフ（Catastrophe） / 初音ミク KAITO</span>
-          </div>
-        </div>
-
-        <div class="item">
-          <div class="thumbnail-container">
-            <img class="thumbnail" src="https://i.ytimg.com/vi/fBLkfdQsXLw/default.jpg" />
-          </div>
-          <div class="properties-container">
-            <span>カタストロフ（Catastrophe） / 初音ミク KAITO</span>
-          </div>
-        </div>
-
       </div>
     </div>
   </body>

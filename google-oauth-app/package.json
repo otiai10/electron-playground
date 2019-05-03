@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/otiai10/electron-playground#readme",
   "dependencies": {
-    "electron": "^5.0.0"
+    "electron": "^5.0.0",
+    "google-auth-library": "^3.1.2"
   }
 }

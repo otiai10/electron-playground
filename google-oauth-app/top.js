@@ -1,21 +1,33 @@
 const { ipcRenderer } = require('electron');
+const SerchService = require('./search-service');
 
 const __onload__ = () => {
+  var service;
   const btn = document.querySelector('button#start-auth');
   btn.addEventListener('click', () => {
     btn.setAttribute('disabled', true);
     ipcRenderer.send('auth-start');
   });
-  ipcRenderer.on('auth-success', (ev, tokens) => {
-    console.log(ev, tokens);
+  ipcRenderer.on('auth-success', async (ev, tokens) => {
+    service = new SerchService(tokens);
     document.querySelector('div.logged-out').style.display = 'none';
     document.querySelector('div.logged-in').style.display = 'flex';
   });
   const input = document.querySelector('input[type=text]');
-  input.addEventListener('keyup', (ev) => {
-    console.log(ev.key);
+  input.addEventListener('keyup', async (ev) => {
+    if (!service) return;
     if (ev.key !== 'Enter') return;
-    console.log(ev.target.value);
+    const response = await service.search(ev.target.value);
+    if (response.status != 200) return alert(`API response status: ${response.status}`);
+    const {items} = await response.json();
+    const entries = items.map(({snippet}) => {
+      const entry = document.querySelector('template#item').content.cloneNode(true);
+      entry.querySelector('span.title').innerText = snippet.title;
+      entry.querySelector('img.thumbnail').setAttribute('src', snippet.thumbnails.default.url);
+      return entry;
+    });
+    document.querySelector('div#result').innerHTML = '';
+    document.querySelector('div#result').append(...entries);
   });
 };
 
