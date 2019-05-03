@@ -18,7 +18,7 @@ app.on('ready', () => {
             scope: ['https://www.googleapis.com/auth/youtube.readonly'],
         });
         // 1) Create another window and get code.
-        const auth = new BrowserWindow({ x: 0, y: 0, useContentSize: true });
+        const auth = new BrowserWindow({ x: 60, y: 60, useContentSize: true });
         const code = await getOAuthCodeByInteraction(auth, url);
         // 2) Exchange OAuth code for tokens.
         const response = await client.getToken(code);

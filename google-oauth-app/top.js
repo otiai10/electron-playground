@@ -1,4 +1,4 @@
-const { ipcRenderer } = require('electron');
+const { ipcRenderer, shell } = require('electron');
 const SerchService = require('./search-service');
 
 const __onload__ = () => {
@@ -20,10 +20,11 @@ const __onload__ = () => {
     const response = await service.search(ev.target.value);
     if (response.status != 200) return alert(`API response status: ${response.status}`);
     const {items} = await response.json();
-    const entries = items.map(({snippet}) => {
+    const entries = items.map(({ snippet, id: { videoId } }) => {
       const entry = document.querySelector('template#item').content.cloneNode(true);
       entry.querySelector('span.title').innerText = snippet.title;
       entry.querySelector('img.thumbnail').setAttribute('src', snippet.thumbnails.default.url);
+      entry.querySelector('img.thumbnail').addEventListener('click', () => shell.openExternal(`https://youtu.be/${videoId}`));
       return entry;
     });
     document.querySelector('div#result').innerHTML = '';

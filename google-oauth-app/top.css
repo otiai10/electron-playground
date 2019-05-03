@@ -63,6 +63,9 @@ input[type=text] {
 .item>div.thumbnail-container {
   margin-right: 8px;
 }
+.item>div.thumbnail-container>img {
+  cursor: pointer;
+}
 .item>div.properties-container {
   flex: 1;
 }
